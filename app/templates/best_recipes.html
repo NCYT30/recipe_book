@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<section class="section">
+
+
+    <form>
+        <input type="text" id="input-buscar" placeholder="Buscar...">
+    </form>
+
+
+    <div class="contenedor" id="contenedor-recetas">
+        {% for reci in recipe %}
+
+        <div class="elemento">
+
+
+            <div class="cara frontal">
+
+                <img src="{{reci.imagen.url}}" alt="Receta">
+
+            </div>
+
+
+            <div class="cara trasera">
+
+
+                <div class="info">
+                    <h3>{{reci.title}}</h3>
+                    <br>
+                    <p>{{reci.description}}</p>
+                    <p>{{reci.category}}</p>
+                    <button>Ver mas</button>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+    </div>
+
+
+</section>
+
+{% endblock %}

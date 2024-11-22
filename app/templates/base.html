@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <script src="https://kit.fontawesome.com/0c7389f1e9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+    <script src="{% static 'js/global.js' %}"></script>
+
+
+    <div class="header">
+
+        <ul id="menu">
+            <li>
+                <a href=""><i class="fa-solid fa-chess-queen fa-xl"></i></a>
+            </li>
+            <li>
+                <a href="{% url 'top' %}">Mejores recetas</a>
+            </li>
+            <li>
+                <a href="{% url 'home' %}">Todas las recetas</a>
+            </li>
+            <li>
+                <a href="{% url 'recipe' %}">Crear mi receta</a>
+            </li>
+        </ul>
+
+    </div>
+    
+
+    {% block content %}
+    {% endblock %}
+    <div id="chat-circle">&#128172;</div>
+    <div id="chatbox-container">
+        <div id="chat-header">Chat</div>
+        <div id="chat-messages">
+            <!-- Este bloque solo se mostrará cuando el bot responda con una receta -->
+            <div class="recipe-details">
+                <h1>{{ recipe.title }}</h1>
+                <ul>
+                    {% for ingredient in recipe_ingredients %}
+                        <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+                <ol>
+                    {% for step in recipe_instructions %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        <div id="chat-input">
+            <textarea id="chat-textarea" rows="2" placeholder="Escribe un mensaje..."></textarea>
+            <button id="send-btn">Enviar</button>
+        </div>
+    </div>
+    
+    
+</body>
+</html>

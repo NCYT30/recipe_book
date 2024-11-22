@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <div class="for">
+    
+        <form action="{% url 'recipe_create' %}" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+    
+                <label for="">Title</label>
+                <input type="text" name="title" class="form">
+    
+                <label for="">Description</label>
+                <input type="text" name="description" class="form">
+
+                <label for="">Category</label>
+                <select name="category" id="name">
+                    <option selected disabled>--Selecciona una opcion</option>
+                    {% for cate in categor %}
+                    <option value="{{cate.id}}">{{cate.name}}</option>
+                    {% endfor %}
+                </select>
+
+                <br>
+                <br>
+
+                <label for="">Ingredients</label>
+                <textarea contenteditable class="textareap" name="ingredients"  style="background-color: #ffffff;">
+                
+                </textarea>
+
+                <br>
+                <br>
+                
+                <label for="">Instructions</label>
+                <textarea contenteditable class="textareap" name="instructions"  style="background-color: #ffffff;">
+                
+                </textarea>
+
+                <br>
+                <br>
+
+                <input type="file" name="imagen" accept="image/*">
+
+                <br>
+                <br>
+                <br>
+
+                <input type="submit" name="" id="">
+    
+        </form>
+    
+    </div>
+
+
+{% endblock %}

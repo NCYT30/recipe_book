@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="saurce">
+    <div class="recipe-container">
+        <!-- Sección de Imagen -->
+        <div class="image-section">
+            <img src="{{ data.imagen.url }}" alt="imagen de la receta">
+        </div>
+
+        <!-- Sección de Detalles -->
+        <div class="details-section" data-recipe-id="{{ data.id }}">
+            
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+            <h2>Descripción</h2>
+            <p>{{ data.description }}</p>
+            
+            <h2>Ingredientes</h2>
+            <ul>
+                {% for ingredient in data.ingredients.splitlines %}
+                    <li>{{ ingredient }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Pasos a seguir</h2>
+            <p>{{ data.instructions }}</p>
+            
+            <h2>Categoría</h2>
+            <p>{{ data.category_name }}</p>
+
+            <!-- Sección de Calificación -->
+            <h2>Calificación</h2>
+            <p>Promedio: {{ data.rating|floatformat:1 }} ({{ data.votes }} votos)</p>
+            <div class="star-rating">
+                {% for i in range %}
+                    <span class="star" data-value="{{ i }}">&#9733;</span>
+                {% endfor %}
+            </div>
+            
+            <p id="rating-display">Tu calificación: <span id="rating-value">0</span></p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
